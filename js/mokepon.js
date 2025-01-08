@@ -23,29 +23,60 @@ const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 
 
+/*Array*/
 let mokepones = []
+
+/*Variables*/
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
+/*Clase Mokepon para que se creen los objetos*/
 class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
+        /*Array de ataques*/
+        this.ataques = []
     }
 }
 
+/*Crea los objetos Mokepon con la clase Mokepon*/
 let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5)
 
 let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5)
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5)
 
-mokepones.push(hipodoge,capipepo,ratigueya)
+/*Mete información al array de hipodoge ataques usando objetos*/
+hipodoge.ataques.push(
+    { nombre : '💧', id: 'boton-agua' },
+    { nombre : '💧', id: 'boton-agua' },
+    { nombre : '💧', id: 'boton-agua' },
+    { nombre : '🔥', id: 'boton-fuego' },
+    { nombre : '🌱', id: 'boton-tierra'}
+)
 
-console.log(mokepones)
+/*Mete información al array de capipepo ataques usando objetos*/
+capipepo.ataques.push(
+    { nombre : '🌱', id: 'boton-tierra'},
+    { nombre : '🌱', id: 'boton-tierra'},
+    { nombre : '🌱', id: 'boton-tierra'},
+    { nombre : '💧', id: 'boton-agua' },
+    { nombre : '🔥', id: 'boton-fuego' }
+)
+
+/*Mete información al array de ataques de ratigueya usando objetos*/
+ratigueya.ataques.push(
+    { nombre : '🔥', id: 'boton-fuego' },
+    { nombre : '🔥', id: 'boton-fuego' },
+    { nombre : '🔥', id: 'boton-fuego' },
+    { nombre : '💧', id: 'boton-agua' },
+    { nombre : '🌱', id: 'boton-tierra'}
+)
+
 
 function iniciarJuego() {
     
