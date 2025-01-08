@@ -118,12 +118,10 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-    
+
     sectionSeleccionarMascota.style.display = 'none'
     
-    
     sectionSeleccionarAtaque.style.display = 'flex'
-    
     
     /*Valida que mascota esta seleccionando el jugador y los muestra en el html usando el input.id */
     if (inputHipodoge.checked) {
@@ -140,15 +138,12 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    let mascotaAleatoria = aleatorio(1,3)
+    /*Selecciona una mascota aleatoria para el enemigo, con la posibilidad de elegirlo entre x cantidad de mokepones*/
+    let mascotaAleatoria = aleatorio(0,mokepones.length -1)
 
-    if (mascotaAleatoria == 1) {
-        spanMascotaEnemigo.innerHTML = 'Hipodoge'
-    } else if (mascotaAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = 'Capipepo'
-    } else {
-        spanMascotaEnemigo.innerHTML = 'Ratigueya'
-    }
+    /*Selecciona un mokepon adentro del array mokepones usando el número aleatorio en el indice. */
+    /**Cuando Tengamos el valor imprimelo adentro de esta etiquet(Asi entendi el innerHTML) */
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
 }
 
 function ataqueFuego() {
