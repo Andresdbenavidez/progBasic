@@ -178,14 +178,17 @@ function secuenciaAtaque(){
                 ataqueJugador.push('FUEGO')
                 console.log(ataqueJugador)
                 boton.style.background ='#112f58'
+                boton.disabled = true
             }else if (e.target.textContent === '💧'){
                 ataqueJugador.push('AGUA')
                 console.log(ataqueJugador)
-                boton.style.background = '#112f58'                
+                boton.style.background = '#112f58'
+                boton.disabled = true             
             }else{
                 ataqueJugador.push('TIERRA')
                 console.log(ataqueJugador)
-                boton.style.background = '#112f58'        
+                boton.style.background = '#112f58'
+                boton.disabled = true
             }
             ataqueAleatorioEnemigo()
         })
@@ -267,7 +270,7 @@ function combate() {
 function revisarVidas() {
     if (victoriasJugador === victoriasEnemigo) {
         crearMensajeFinal("Esto fue un empate!")
-    } else if (vidasJugador > victoriasEnemigo) {
+    } else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeFinal("FELICITACIONES! Ganaste :)")
     } else {
         crearMensajeFinal('Lo siento, perdiste :(')
@@ -290,10 +293,6 @@ function crearMensaje(resultado) {
 
 function crearMensajeFinal(resultadoFinal) {
     sectionMensajes.innerHTML = resultadoFinal
-
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
 
     sectionReiniciar.style.display = 'block'
 }
