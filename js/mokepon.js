@@ -21,6 +21,9 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
+
 /*Array*/
 let mokepones = []
 let botones = []
@@ -44,6 +47,8 @@ let victoriasJugador = 0
 let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
+//Usamos el lienzo para dibujar dentro de canvas
+let lienzo = mapa.getContext("2d")
 
 /*Clase Mokepon para que se creen los objetos*/
 class Mokepon {
@@ -94,6 +99,7 @@ mokepones.push(hipodoge, capipepo, ratigueya)
 
 function iniciarJuego() {
     sectionSeleccionarAtaque.style.display = 'none'
+    sectionVerMapa.style.display = 'none'
 
     /*Ciclo foreach para crear las tarjetas de los mokepones*/
     mokepones.forEach((mokepon) => {
@@ -120,7 +126,21 @@ function iniciarJuego() {
 
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
-    sectionSeleccionarAtaque.style.display = 'flex'
+
+    //Mostrar los botones de ataques
+    // sectionSeleccionarAtaque.style.display = 'flex'
+
+    // Mostrar el mapa de canvas
+    sectionVerMapa.style.display = 'flex'
+    let imagenDeCapipepo = new Image()
+    imagenDeCapipepo.src = capipepo.foto
+    lienzo.drawImage(
+        imagenDeCapipepo,
+        20,
+        40,
+        100,
+        100
+    )
     
     /*Valida que mascota esta seleccionando el jugador y los muestra en el html usando el input.id */
     if (inputHipodoge.checked) {
