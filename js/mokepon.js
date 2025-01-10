@@ -49,6 +49,7 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 //Usamos el lienzo para dibujar dentro de canvas
 let lienzo = mapa.getContext("2d")
+let intervalo
 
 /*Clase Mokepon para que se creen los objetos*/
 class Mokepon {
@@ -66,9 +67,13 @@ class Mokepon {
         this.ancho = 100
         this.alto = 100
 
-        //imagen del
+        //imagen del canvas
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto
+        
+        //velocidad del mokepon
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -143,7 +148,7 @@ function seleccionarMascotaJugador() {
 
     // Mostrar el mapa de canvas
     sectionVerMapa.style.display = 'flex'
-
+    intervalo = setInterval(pintarPersonaje, 50)
     
     /*Valida que mascota esta seleccionando el jugador y los muestra en el html usando el input.id */
     if (inputHipodoge.checked) {
@@ -332,6 +337,9 @@ function aleatorio(min, max) {
 
 
 function pintarPersonaje() {
+    capipepo.x = capipepo.x + capipepo.velocidadX
+    capipepo.y = capipepo.y + capipepo.velocidadY
+    
     lienzo.clearRect(0, 0, mapa.width, mapa.height); // Asegúrate de que 'height' esté correcto
 
     // Verifica si la imagen está completamente cargada
@@ -350,10 +358,25 @@ function pintarPersonaje() {
 }
 
 
-function moverCapipepo(){
-    capipepo.x = capipepo.x + 5
-    pintarPersonaje()
+function moveR(){
+    capipepo.velocidadX = 5
 }
 
+function moveL(){
+    capipepo.velocidadX = - 5
+}
+
+function moveD(){
+    capipepo.velocidadY = 5
+}
+
+function moveU(){
+    capipepo.velocidadY = -5
+}
+
+function stopMove(){
+    capipepo.velocidadX = 0
+    capipepo.velocidadY = 0
+}
 
 window.addEventListener('load', iniciarJuego)
