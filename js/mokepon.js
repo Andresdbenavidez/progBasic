@@ -64,11 +64,11 @@ class Mokepon {
         this.x = 20
         this.y = 30
         this.ancho = 100
-        this.ancho = 100
+        this.alto = 100
 
         //imagen del
-        this.mapaFoto = new Image(this.foto.src)
-        this.mapaFoto.src = this.foto
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
     }
 }
 
@@ -331,16 +331,22 @@ function aleatorio(min, max) {
 }
 
 
-function pintarPersonaje(){
-    lienzo.clearRect(0, 0, mapa.width, mapa.eight)
-    lienzo.drawImage(
-        capipepo.mapaFoto,
-        capipepo.x,
-        capipepo.y,
-        capipepo.ancho,
-        capipepo.alto,
-        console.log(capipepo.mapaFoto)
-    )
+function pintarPersonaje() {
+    lienzo.clearRect(0, 0, mapa.width, mapa.height); // Asegúrate de que 'height' esté correcto
+
+    // Verifica si la imagen está completamente cargada
+    if (capipepo.mapaFoto.complete) {
+        console.log(capipepo.mapaFoto); // Muestra la imagen en la consola
+        lienzo.drawImage(
+            capipepo.mapaFoto,
+            capipepo.x,
+            capipepo.y,
+            capipepo.ancho,
+            capipepo.alto
+        );
+    } else {
+        console.log("La imagen no está completamente cargada.");
+    }
 }
 
 
