@@ -56,7 +56,7 @@ mapaBackground.src = './assets/mokemap.png'
 
 /*Clase Mokepon para que se creen los objetos*/
 class Mokepon {
-    constructor(nombre, foto, vida, fotomap) {
+    constructor(nombre, foto, vida, fotomap, x = 10, y = 10) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
@@ -66,8 +66,8 @@ class Mokepon {
         this.ataques = []
 
         //Atributos para mover el mokepon
-        this.x = 20
-        this.y = 30
+        this.x = aleatorio(0,320)
+        this.y = aleatorio(0,240)
         this.ancho = 40
         this.alto = 40
 
@@ -79,12 +79,32 @@ class Mokepon {
         this.velocidadX = 0
         this.velocidadY = 0
     }
+
+    pintarMokepon(){
+        // Verifica si la imagen está completamente cargada
+        if (this.mapaFoto.complete) {
+            //console.log(mascotaJugadorObjeto.mapaFoto); // Muestra la imagen en la consola
+            lienzo.drawImage(
+                this.mapaFoto,
+                this.x,
+                this.y,
+                this.ancho,
+                this.alto
+            )
+        } else {
+            console.log("La imagen no está completamente cargada.");
+        }
+    }
 }
 
 /*Crea los objetos Mokepon con la clase Mokepon*/
-let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5, 'assets/hipodoge.png')
+let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png',)
 let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.png')
-let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5, 'assets/ratigueya.png')
+let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.png')
+
+let hipodogeEnemigo = new Mokepon('HipodogeEnemigo', './assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png', 10, 10)
+let capipepoEnemigo = new Mokepon('CapipepoEnemigo', './assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.png', 150, 95)
+let ratigueyaEnemigo = new Mokepon('RatigueyaEnemigo', './assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.png', 200, 190)
 
 /*Mete información al array de hipodoge ataques usando objetos*/
 hipodoge.ataques.push(
@@ -342,8 +362,6 @@ function aleatorio(min, max) {
 
 
 function pintarCanvas() {
-    
-
     mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
     mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
     lienzo.clearRect(0, 0, mapa.width, mapa.height); // Asegúrate de que 'height' esté correcto
@@ -354,19 +372,10 @@ function pintarCanvas() {
         mapa.width,
         mapa.height
     )
-    // Verifica si la imagen está completamente cargada
-    if (mascotaJugadorObjeto.mapaFoto.complete) {
-        //console.log(mascotaJugadorObjeto.mapaFoto); // Muestra la imagen en la consola
-        lienzo.drawImage(
-            mascotaJugadorObjeto.mapaFoto,
-            mascotaJugadorObjeto.x,
-            mascotaJugadorObjeto.y,
-            mascotaJugadorObjeto.ancho,
-            mascotaJugadorObjeto.alto
-        );
-    } else {
-        console.log("La imagen no está completamente cargada.");
-    }
+    mascotaJugadorObjeto.pintarMokepon()
+    hipodogeEnemigo.pintarMokepon()
+    capipepoEnemigo.pintarMokepon()
+    ratigueyaEnemigo.pintarMokepon()
 }
 
 
@@ -420,8 +429,8 @@ function dropButton(){
 
 function iniciarMapa(){
     //Hacer mapamas grande
-    mapa.width = 320
-    mapa.height = 240
+    mapa.width = 350
+    mapa.height = 270
     
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
 

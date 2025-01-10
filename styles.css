@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-image: url('https://img.freepik.com/vector-gratis/fondo-paisaje-futurista-estilo-retro_52683-19999.jpg?t=st=1736424009~exp=1736427609~hmac=d17046c535d4ddd99b6878a79677b071ab5ed936a03faf901a2d750d2f6874e1&w=1380');
+  background-image: url('https://i.pinimg.com/originals/d2/63/55/d26355a4484cf412669476a57a263abc.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -36,7 +36,7 @@ body {
 .tarjeta-de-mokepon {
   width: 180px;
   height: 100px;
-  background: #11468F;
+  background: #071035;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 20px;
@@ -66,7 +66,7 @@ input {
 }
 
 input:checked + label {
-  background-color: #5D8BF4;
+  background-color: #2C2C82;
 }
 
 #seleccionar-ataque {
@@ -133,8 +133,20 @@ input:checked + label {
   justify-content: center;
 }
 
+#ver-mapa .titulo{
+  color: FFFAEC;
+}
+
 #mapa {
-  border: 2px solid white;
+  border: 2px solid #347928;
+}
+
+.botCanvas{
+  border: 2px solid transparent;
+  border-radius: 15%;
+  background-color: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  color: #FFFAEC;
 }
 
 @media (max-width: 360px) {
