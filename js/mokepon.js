@@ -148,7 +148,7 @@ function seleccionarMascotaJugador() {
 
     // Mostrar el mapa de canvas
     sectionVerMapa.style.display = 'flex'
-    intervalo = setInterval(pintarPersonaje, 50)
+    iniciarMapa()
     
     /*Valida que mascota esta seleccionando el jugador y los muestra en el html usando el input.id */
     if (inputHipodoge.checked) {
@@ -344,7 +344,7 @@ function pintarPersonaje() {
 
     // Verifica si la imagen está completamente cargada
     if (capipepo.mapaFoto.complete) {
-        console.log(capipepo.mapaFoto); // Muestra la imagen en la consola
+        //console.log(capipepo.mapaFoto); // Muestra la imagen en la consola
         lienzo.drawImage(
             capipepo.mapaFoto,
             capipepo.x,
@@ -377,6 +377,40 @@ function moveU(){
 function stopMove(){
     capipepo.velocidadX = 0
     capipepo.velocidadY = 0
+}
+
+function pressButton(){
+    console.log(event.key);
+}
+
+function pressButton(event){
+    switch (event.key) {
+        case 'ArrowUp':
+            moveU()
+            break
+        case 'ArrowDown':
+            moveD()
+            break
+        case 'ArrowLeft':
+            moveL()
+            break
+        case 'ArrowRight':
+            moveR()
+            break
+        default:
+            break;
+    }
+}
+
+function dropButton(){
+    stopMove()
+}
+
+function iniciarMapa(){
+    // Inicializar el mapa
+    intervalo = setInterval(pintarPersonaje, 50)
+    window.addEventListener('keydown', pressButton)
+    window.addEventListener('keyup', dropButton)
 }
 
 window.addEventListener('load', iniciarJuego)
