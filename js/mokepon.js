@@ -53,10 +53,23 @@ let lienzo = mapa.getContext("2d")
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './assets/mokemap.png'
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 350
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
+
 
 /*Clase Mokepon para que se creen los objetos*/
 class Mokepon {
-    constructor(nombre, foto, vida, fotomap, x = 10, y = 10) {
+    constructor(nombre, foto, vida, fotomap) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
@@ -66,10 +79,10 @@ class Mokepon {
         this.ataques = []
 
         //Atributos para mover el mokepon
-        this.x = aleatorio(0,320)
-        this.y = aleatorio(0,240)
         this.ancho = 40
         this.alto = 40
+        this.x = aleatorio(0,mapa.width - this.ancho)   
+        this.y = aleatorio(0,mapa.height - this.alto)
 
         //imagen del canvas
         this.mapaFoto = new Image()
@@ -102,9 +115,9 @@ let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attac
 let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.png')
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.png')
 
-let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png', 10, 10)
-let capipepoEnemigo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.png', 150, 95)
-let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.png', 200, 190)
+let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png')
+let capipepoEnemigo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.png')
+let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.png')
 
 /*Mete información al array de hipodoge ataques usando objetos*/
 hipodoge.ataques.push(
@@ -452,10 +465,6 @@ function dropButton(){
 }
 
 function iniciarMapa(){
-    //Hacer mapamas grande
-    mapa.width = 350
-    mapa.height = 270
-    
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
 
     // Inicializar el mapa
