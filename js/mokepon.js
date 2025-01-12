@@ -4,7 +4,6 @@ const botonMascotaJugador = document.getElementById('boton-mascota')
 const botonReiniciar = document.getElementById('boton-reiniciar')
 sectionReiniciar.style.display = 'none'
 
-
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
 const spanMascotaJugador = document.getElementById('mascota-jugador')
 
@@ -16,15 +15,15 @@ const spanVidasEnemigo = document.getElementById('vidas-enemigo')
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
-
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
-
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 const sectionVerMapa = document.getElementById('ver-mapa')
 const mapa = document.getElementById('mapa')
 
-/*Array*/
+
+let jugadorId = null
+/*Arrays*/
 let mokepones = []
 let botones = []
 let ataqueJugador = []
@@ -205,11 +204,11 @@ function iniciarJuego() {
 function unirseAlJuego(){
     fetch("http://localhost:8000/unirse")
         .then(function (res) {
-            console.log(res)
             if (res.ok) {
                 res.text()
                     .then(function (respuesta) {
-                        console.log(respuesta)              
+                        console.log(respuesta)
+                        jugadorId = respuesta         
                 })
             }
         })
@@ -242,12 +241,24 @@ function seleccionarMascotaJugador() {
         alert('Selecciona una mascota')
     }
 
+    seleccionarMokepon(mascotaJugador)
+    
     extraerAtaques(mascotaJugador)
     sectionVerMapa.style.display = 'flex'
     iniciarMapa()
-    seleccionarMascotaEnemigo()
 }
 
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8000/mokepon/${jugadorId}`,{
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
+}
 
 function extraerAtaques(mascotaJugador) {
     let ataques
