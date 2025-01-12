@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Andresdbenavidez/progBasic/issues"
   },
-  "homepage": "https://github.com/Andresdbenavidez/progBasic#readme"
+  "homepage": "https://github.com/Andresdbenavidez/progBasic#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
