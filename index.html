@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <title>MOKEPON!</title>
-        <link rel="stylesheet" href="./styles.css"> 
+        <link rel="stylesheet" href="./styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
         <section id="seleccionar-mascota">
@@ -19,13 +20,16 @@
         </section>
 
         <section id="ver-mapa">
-            <h1 class="titulo">Recorre el mapa con tu Mokepon</h1> 
+            <h2 class="subtitulo">Recorre el mapa con tu Mokepon</h2> 
             <canvas id="mapa"></canvas>
+            <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveU()">Up</button>
             <div>
-                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveL()">◀️</button>
-                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveR()">▶️</button>
-                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveU()">🔼</button>
-                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveD()">🔽</button>
+                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveL()">Left</button>
+                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveR()">Right</button>
+                
+            </div>
+            <div>
+                <button class="botCanvas" onmouseup="stopMove()" onmousedown="moveD()">Down</button>
             </div>
             
         </section>
